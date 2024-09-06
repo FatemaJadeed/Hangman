@@ -1,0 +1,31 @@
+// 1. Initialize Game State: The game starts by selecting a random word from a list and setting up the initial game state.
+//    - Choose a random word from a predefined list of words.
+//    - Initialize the hidden word as a series of underscores with the same length as the chosen word.
+//    - Set the number of allowed incorrect guesses (e.g., 6).
+
+// 2. Display Game State: Show the current state of the game to the player.
+//    - Display the hidden word with underscores and any correctly guessed letters.
+//    - Show the history of guessed letters.
+//    - Display the number of remaining incorrect guesses and the hangman figure.
+
+// 3. Guess Function: Handle a player's guess.
+//    - Take the guessed letter from the player.
+//    - Check if the letter is in the chosen word.
+//    - If the letter is correct, reveal the letter in the hidden word.
+//    - If the letter is incorrect, decrement the number of remaining guesses and update the hangman figure.
+
+// 4. Check Win/Loss Conditions: Determine if the game has ended.
+//    - Check if the hidden word has been fully revealed. If so, declare a win.
+//    - Check if the number of remaining incorrect guesses has reached zero. If so, declare a loss.
+
+// 5. Update Game State: After each guess, update the game state.
+//    - Add the guessed letter to the history of guessed letters.
+//    - Refresh the display to show the updated hidden word, guessed letters, and hangman figure.
+
+// 6. Restart Game: Provide an option to restart the game after it ends.
+//    - Reset the game state to start a new game with a new word and full number of guesses.
+
+// 7. Event Handling: Listen for player inputs (e.g., keyboard presses) and update the game state accordingly.
+//    - Handle inputs for guessing letters.
+//    - Trigger game state updates and checks based on player actions.
+
