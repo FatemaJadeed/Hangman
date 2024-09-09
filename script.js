@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded' , () => {
        }
 
 
-
 // Choose random word
        const chooseRandomWord = () => {
         const randomIndex = Math.floor(Math.random() * words.length)
@@ -44,9 +43,20 @@ document.addEventListener('DOMContentLoaded' , () => {
        const updateWordDisplay = () => {
         wordDisplay.innerHTML = ''
         selectedWord.split('').forEach(letter => {
-
+            const li = document.createElement('li')
+            li.className = 'lwtter'
+            li.textContent = gussedLetters.includes(letter) ? letter : '-'
+            wordDisplay.appendChild(li)
         })
        }
+
+
+
+
+
+
+
+
 
 
 
