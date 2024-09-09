@@ -4,14 +4,17 @@ const guessesText =  document.querySelector(".guessesText b")
 const keyboardDiv = document.querySelector(".keyboard")
 const gameModal = document.querySelector(".gameModal")
 const playAgainBtn = document.querySelector(".playAgain")
-
+const timerDisplay = document.querySelector("#timerDisplay")
 
 //console.log(playAgainBtn)
+
 
 let currentWord, correctLetters, wrongGuessCount
 const maxGuesses = 6
 let guessTimeOut
+let remainingTime
 const guessTimeLimit = 10
+
 
 
 const resetGame = () => {
@@ -23,19 +26,34 @@ const resetGame = () => {
     keyboardDiv.querySelectorAll("button").forEach(btn => btn.disabled = false)
     wordDisplay.innerHTML = currentWord.split("").map(() => `<li class="letter"></li>`).join("")
     gameModal.classList.remove("show")
-    resetGuessTimer()
+    startGameTimer()
 }
 
 
-const resetGuessTimer = () => {
-    clearTimeout(guessTimeOut)
-    guessTimeOut =setTimeout(() => {
+const startGameTimer = () => {
+//timer for game
+remainingTime = guessTimeLimit
+timerDisplay.innerText = remainingTime
+
+    clearInterval(guessTimeOut)
+    guessTimeOut =setInterval(() => {
+        remainingTime--
+        timerDisplay.innerText = remainingTime
+
+        if (remainingTime === 0) {
         wrongGuessCount++
         hangmanImage.src = `img/hangman-${wrongGuessCount}.svg`
         guessesText.innerText = `${wrongGuessCount} / ${maxGuesses}`
 
-        if (wrongGuessCount === maxGuesses) return gameOver(false)
-    }, guessTimeLimit * 1000)
+        if (wrongGuessCount === maxGuesses) {
+            clearInterval(guessTimeOut)
+            return gameOver(false)
+        }
+
+        startGameTimer()
+    }
+
+   }, 1000)
 }
 
 
@@ -58,7 +76,7 @@ const gameOver = (isVictory) => {
         gameModal.querySelector("p").innerHTML = `${modalText} <b>${currentWord}</b>`
         gameModal.classList.add("show")
 
-        clearTimeout(guessTimeOut)
+        clearInterval(guessTimeOut)
 
     }, 300)
 }
@@ -91,7 +109,7 @@ const initGame = (button, clickedLetter) => {
     if(wrongGuessCount === maxGuesses) return gameOver(false)
     if(correctLetters.length === currentWord.length) return gameOver(true)
 
-        resetGuessTimer()
+        startGameTimer()
 
    // console.log(clickedLetter)
 }
