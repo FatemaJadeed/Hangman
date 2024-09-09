@@ -153,6 +153,27 @@ body {
 }
 
 
+.timerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+
+.timerBox {
+    background: #f8f9fa;
+    border: 2px solid #d4597a;
+    border-radius: 8px;
+    padding:  10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #dd426b;
+    text-align: center;
+    min-width: 100px;
+}
+
+
 @media (max-width: 782px) {
     .container {
         flex-direction: column;
