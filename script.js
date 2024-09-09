@@ -14,6 +14,7 @@ const maxGuesses = 6
 let guessTimeOut
 let remainingTime
 const guessTimeLimit = 15
+let guessedLetters = []
 
 
 
@@ -84,34 +85,44 @@ const gameOver = (isVictory) => {
 
 const initGame = (button, clickedLetter) => {
     // checking if clickedLetter is exist on the currentWord//
+    if (guessedLetters.includes(clickedLetter)) {
+  // If the letter is guessed before, the player is penalized
+        wrongGuessCount++
+        hangmanImage.src = `img/hangman-${wrongGuessCount}.svg`
+        guessesText.innerText = `${wrongGuessCount} / ${maxGuesses}`
+
+        if (wrongGuessCount === maxGuesses) return gameOver(false)
+
+        return; 
+    }
+    guessedLetters.push(clickedLetter)
+
     if (currentWord.includes(clickedLetter)) {
         //showing all correct letters on the word display//
         [...currentWord].forEach((letter, index) => {
-            if(letter === clickedLetter) {
+            if (letter === clickedLetter) {
                 correctLetters.push(letter)
                 wordDisplay.querySelectorAll("li")[index].innerText = letter
                 wordDisplay.querySelectorAll("li")[index].classList.add("guessed")
             }
-        })
-       // console.log(clickedLetter, "is exist on the word")//
+        });
+        // console.log(clickedLetter, "is exist on the word")//
     } else {
-        // if clicked letter doesn't exist then update the wrongGuessCount and hangman img//
         wrongGuessCount++
         hangmanImage.src = `img/hangman-${wrongGuessCount}.svg`
-        //console.log(clickedLetter, "is not exist on the word")
+        // console.log(clickedLetter, "is not exist on the word")//
     }
 
-    button.disabled = true
+    // button.disabled = true
+
     guessesText.innerText = `${wrongGuessCount} / ${maxGuesses}`
 
+    //calling gameOver function if any of these conditions meets//
+    if (wrongGuessCount === maxGuesses) return gameOver(false)
+    if (correctLetters.length === currentWord.length) return gameOver(true)
 
-    //calling gameOver function if any of these condition meets//
-    if(wrongGuessCount === maxGuesses) return gameOver(false)
-    if(correctLetters.length === currentWord.length) return gameOver(true)
-
-        startGameTimer()
-
-   // console.log(clickedLetter)
+    startGameTimer()
+    // console.log(clickedLetter)
 }
 
 // creating keyboard buttons and adding event listeners//
