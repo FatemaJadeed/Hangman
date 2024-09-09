@@ -1,65 +1,51 @@
-document.addEventListener('DOMContentLoaded' , () => {
-    const words = ['hangman' , 'rabbit' , 'strawberry' , 'coffee' , 'switzerland' , 'mercedes' ,
-       'puzzle' , 'sunshine' , 'california' , 'freedom' , 'elephant' , 'rainbow' , 'Guitar' ]
-    
-       let selectedWord = ''
-       let gussedLetters = []
-       let incorrectGuesses = 6
+const hangmanImage =  document.querySelector(".hangmanBox img")
+const wordDisplay =  document.querySelector(".wordDisplay")
+const guessesText =  document.querySelector(".guessesText b")
+const keyboardDiv = document.querySelector(".keyboard")
+
+let currentWord, wrongGuessCount = 0
+const maxGuesses = 6
+
+const getRandomWord = () =>  {
+    const {word , hint} = wordList[Math.floor(Math.random() * wordList.length)]
+    currentWord = word
+    console.log(word)
+    document.querySelector(".hintText b").innerText = hint
+    wordDisplay.innerHTML = word.split("").map(() => `<li class="letter"></li>`).join("")
+}
 
 
-
-       const wordDisplay = document.querySelector('.wordDisplay')
-       const gussesText = document.querySelector('.guessesText b')
-       const gameModal = document.querySelector('.gameModal')
-       const playAgainButton = document.querySelector('playAgain')
-       const keyboard = document.querySelector('.keyboard')
-       const hangmanImage = document.querySelector('.hangmanBox img')
-
-
-// Setup keyboard
-       const setupKeyboard = () => {
-        const alphabet = 'abcdefghijklmnopqrstuvwxyz'
-        keyboard.innerHTML = ''
-        alphabet.split('').forEach(letter => {
-            const button = document.createElement('button')
-            button.textContent = letter
-            button.addEventListener('click' , () => handleGuess(letter))
-            keyboard.appendChild(button)
-
+const initGame = (button, clickedLetter) => {
+    // checking if clickedLetter is exist on the currentWord
+    if (currentWord.includes(clickedLetter)) {
+        //showing all correct letters on the word display
+        [...currentWord].forEach((letter, index) => {
+            if(letter === clickedLetter) {
+                wordDisplay.querySelectorAll("li")[index].innerText = letter
+                wordDisplay.querySelectorAll("li")[index].classList.add("guessed")
+            }
         })
-       }
+       // console.log(clickedLetter, "is exist on the word")
+    } else {
+        // if clicked letter doesn't exist then update the wrongGuessCount and hangman img
+        wrongGuessCount++
+        hangmanImage.src = `img/hangman-${wrongGuessCount}.svg`
+        //console.log(clickedLetter, "is not exist on the word")
+    }
 
+    button.disabled = true
+    guessesText.innerText = `${wrongGuessCount} / ${maxGuesses}`
+   // console.log(clickedLetter)
+}
 
-// Choose random word
-       const chooseRandomWord = () => {
-        const randomIndex = Math.floor(Math.random() * words.length)
-        selectedWord = words[randomIndex]
-        updateWordDisplay()
-       }
+// creating keyboard buttons and adding event listeners
 
+for (let i =97; i <=  122; i++) {
+    const button = document.createElement("button")
+    button.innerHTML = String.fromCharCode(i)
+    keyboardDiv.appendChild(button)
+    button.addEventListener("click", e => initGame(e.target, String.fromCharCode(i)))
+}
 
-// Update word display
+getRandomWord()
 
-       const updateWordDisplay = () => {
-        wordDisplay.innerHTML = ''
-        selectedWord.split('').forEach(letter => {
-            const li = document.createElement('li')
-            li.className = 'lwtter'
-            li.textContent = gussedLetters.includes(letter) ? letter : '-'
-            wordDisplay.appendChild(li)
-        })
-       }
-
-
-
-
-
-
-
-
-
-
-
-
-
-})
