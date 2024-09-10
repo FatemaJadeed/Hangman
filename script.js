@@ -62,7 +62,7 @@ const getRandomWord = () =>  {
     const {word , hint} = wordList[Math.floor(Math.random() * wordList.length)]
     currentWord = word
     //Hide word from console//
-    //console.log(word)
+    console.log(word)
     document.querySelector(".hintText b").innerText = hint
     resetGame()
 }
