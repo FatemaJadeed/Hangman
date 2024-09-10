@@ -13,7 +13,7 @@ let currentWord, correctLetters, wrongGuessCount
 const maxGuesses = 6
 let guessTimeOut
 let remainingTime
-const guessTimeLimit = 15
+const guessTimeLimit = 20
 let guessedLetters = []
 
 
