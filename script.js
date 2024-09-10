@@ -112,21 +112,15 @@ const triggerRandomEvent = () => {
 
 
 const initGame = (button, clickedLetter) => {
-    // checking if clickedLetter is exist on the currentWord//
     if (guessedLetters.includes(clickedLetter)) {
-  // If the letter is guessed before, the player is penalized
-        wrongGuessCount++
-        hangmanImage.src = `img/hangman-${wrongGuessCount}.svg`
-        guessesText.innerText = `${wrongGuessCount} / ${maxGuesses}`
-
-        if (wrongGuessCount === maxGuesses) return gameOver(false)
-
-        return; 
+        // If the letter has been guessed before, do nothing and return
+        return
     }
+
     guessedLetters.push(clickedLetter)
 
     if (currentWord.includes(clickedLetter)) {
-        //showing all correct letters on the word display//
+        // Show all correct letters on the word display
         [...currentWord].forEach((letter, index) => {
             if (letter === clickedLetter) {
                 correctLetters.push(letter)
@@ -134,30 +128,24 @@ const initGame = (button, clickedLetter) => {
                 wordDisplay.querySelectorAll("li")[index].classList.add("guessed")
             }
         });
-        // console.log(clickedLetter, "is exist on the word")//
     } else {
         wrongGuessCount++
         hangmanImage.src = `img/hangman-${wrongGuessCount}.svg`
-        // console.log(clickedLetter, "is not exist on the word")//
-    }
+        }
 
-    // button.disabled = true
-
+    button.disabled = true
     guessesText.innerText = `${wrongGuessCount} / ${maxGuesses}`
 
-
-// sudden event
     if (Math.random() < 0.2) {
         triggerRandomEvent()
     }
 
-    //calling gameOver function if any of these conditions meets//
     if (wrongGuessCount === maxGuesses) return gameOver(false)
     if (correctLetters.length === currentWord.length) return gameOver(true)
 
     startGameTimer()
-    // console.log(clickedLetter)
 }
+
 
 // creating keyboard buttons and adding event listeners//
 
@@ -170,4 +158,5 @@ for (let i =97; i <=  122; i++) {
 
 getRandomWord()
 playAgainBtn.addEventListener("click" , getRandomWord)
+
 

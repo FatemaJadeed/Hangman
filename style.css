@@ -102,6 +102,11 @@ body {
     width: calc(100% / 9 - 6px);
 }
 
+.keyboard button[disabled] {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
 
 .keyboard button:hover {
     background: rgb(237, 212, 229);
