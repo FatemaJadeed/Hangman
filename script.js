@@ -83,6 +83,34 @@ const gameOver = (isVictory) => {
 }
 
 
+
+const triggerRandomEvent = () => {
+    const events = ['restore_attempt' , 'skip_wrong_guess']
+    const randomEvent = events[Math.floor(Math.random() * events.length)]
+
+    switch (randomEvent) {
+        case 'restore_attempt' :
+        if(wrongGuessCount > 0) {
+            wrongGuessCount--
+            hangmanImage.src = `img/hangman-${wrongGuessCount}.svg`
+            guessesText.innerText = `${wrongGuessCount} / ${maxGuesses}`
+            alert('Sudden Event! Lost Attempt Recovered!')
+        }
+
+        break
+
+        case'skip_worng_guess' :
+        alert('Surprise event! The next letter will be skipped without losing a try')
+
+        break
+
+
+        default: 
+        break
+    }
+}
+
+
 const initGame = (button, clickedLetter) => {
     // checking if clickedLetter is exist on the currentWord//
     if (guessedLetters.includes(clickedLetter)) {
@@ -116,6 +144,12 @@ const initGame = (button, clickedLetter) => {
     // button.disabled = true
 
     guessesText.innerText = `${wrongGuessCount} / ${maxGuesses}`
+
+
+// sudden event
+    if (Math.random() < 0.2) {
+        triggerRandomEvent()
+    }
 
     //calling gameOver function if any of these conditions meets//
     if (wrongGuessCount === maxGuesses) return gameOver(false)
