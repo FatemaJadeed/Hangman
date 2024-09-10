@@ -1,16 +1,18 @@
+
 body {
+    font-family: "Cabin Sketch", sans-serif;
     display: flex;
     align-items: center;
     padding: 0 10px;
     justify-content: center;
     min-height: 100vh;
-    background: rgb(239, 238, 235);
+    background: #ffe8e4;
 }
 
 .container {
     width: 1250px;
     height: 600px;
-    background: #c8ace9d8;
+    background: #00026c55;
     display: flex;
     gap:70px;
     align-items: center;
@@ -23,10 +25,10 @@ body {
 }
 
 .hangmanBox h1 {
-    font-size: 1.4rem;
+    font-size: 2.9rem;
     margin-top: 20px;
     text-align: center;
-    color: rgb(247, 247, 247);
+    color: #00026c;
     text-transform: uppercase;
 }
 
@@ -55,17 +57,26 @@ body {
 
 .gameBox h4 {
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 1.9rem;
     font-weight: 500;
     margin-bottom: 15px;
 }
 
+.guessesText {
+    color: rgb(239, 238, 235);
+}
+
+.hintText {
+    color: #fdab0b;
+}
+
 .gameBox h4 b {
     font-weight: 600;
+    color: rgb(239, 238, 235);
 }
 
 .gameBox .guessesText b {
-   color: rgb(239, 238, 235); 
+   color:#fdab0b; 
 }
 
 .gameBox .keyboard {
@@ -81,7 +92,7 @@ body {
     font-weight: 600;
     cursor: pointer;
     outline: none;
-    background: rgb(236, 184, 219);
+    background: #fdab0b;
     border: none;
     border-radius: 4px;
     text-transform: uppercase;
@@ -146,7 +157,7 @@ body {
 }
 
 .gameModal p b {
-    color: #a066e2d8;
+    color: #fb5a48;
     font-weight: 600;
 }
 
@@ -164,13 +175,13 @@ body {
 
 
 .timerBox {
-    background: rgb(236, 231, 215);
-    border: 2px solid #a066e2d8;
+    background: rgb(248, 248, 248);
+    border: 2px solid #fdab0b;
     border-radius: 9px;
     padding:  10px 20px;
-    font-size: 18px;
+    font-size: 28px;
     font-weight: bold;
-    color: #a066e2d8;
+    color: #fb5a48;
     text-align: center;
     min-width: 100px;
 }
