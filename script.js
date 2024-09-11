@@ -22,6 +22,7 @@ const resetGame = () => {
     // ressetting all game variables and UI elements//
     correctLetters = []
     wrongGuessCount = 0
+    guessedLetters = []
     hangmanImage.src = `img/hangman-${wrongGuessCount}.svg`
     guessesText.innerText = `${wrongGuessCount} / ${maxGuesses}`
     keyboardDiv.querySelectorAll("button").forEach(btn => btn.disabled = false)
