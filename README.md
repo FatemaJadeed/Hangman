@@ -21,8 +21,8 @@ The goal is to guess the word before the attempts run out.
 
 ### ***Future Updates***
 
-- [ ] Future Update 1
-- [ ] Future Update 2
+- [ ] Voice Commands and Feedback
+- [ ] Customizable Game Themes
 
 ***
 
