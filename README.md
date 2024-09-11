@@ -18,6 +18,17 @@ The goal is to guess the word before the attempts run out.
 
 ---
 
+
+### ***Future Updates***
+
+- [ ] Voice Commands and Feedback
+- [ ] Customizable Game Themes
+
+***
+
+
+---
+
 ### **_Wireframe_**
 
 
