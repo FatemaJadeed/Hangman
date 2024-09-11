@@ -2,7 +2,8 @@
 
 ### by : Fatema Jadeed
 
-### [gitHub](https://github.com/FatemaJadeed)
+### [gitHub](https://github.com/FatemaJadeed)  || [Game](https://amazing-roll.surge.sh/) || [Linkedin](
+https://www.linkedin.com/in/fatema-jadeed-b37614320?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app)
 
 ---
 
