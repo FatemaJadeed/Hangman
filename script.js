@@ -114,7 +114,12 @@ const triggerRandomEvent = () => {
 
 const initGame = (button, clickedLetter) => {
     if (guessedLetters.includes(clickedLetter)) {
+        wrongGuessCount++
+        hangmanImage.src = `img/hangman-${wrongGuessCount}.svg`
+        guessesText.innerText = `${wrongGuessCount} / ${maxGuesses}`
+
         // If the letter has been guessed before, do nothing and return
+        if (wrongGuessCount === maxGuesses) return gameOver(false)
         return
     }
 
@@ -132,20 +137,21 @@ const initGame = (button, clickedLetter) => {
     } else {
         wrongGuessCount++
         hangmanImage.src = `img/hangman-${wrongGuessCount}.svg`
-        }
-
-    button.disabled = true
-    guessesText.innerText = `${wrongGuessCount} / ${maxGuesses}`
+        guessesText.innerText = `${wrongGuessCount} / ${maxGuesses}`
 
     if (Math.random() < 0.2) {
         triggerRandomEvent()
     }
 
     if (wrongGuessCount === maxGuesses) return gameOver(false)
-    if (correctLetters.length === currentWord.length) return gameOver(true)
+
+}
+if (correctLetters.length === currentWord.length) return gameOver(true)
 
     startGameTimer()
+
 }
+
 
 
 // creating keyboard buttons and adding event listeners//
