@@ -146,6 +146,9 @@ const initGame = (button, clickedLetter) => {
     if (wrongGuessCount === maxGuesses) return gameOver(false)
 
 }
+
+button.disabled = true
+
 if (correctLetters.length === currentWord.length) return gameOver(true)
 
     startGameTimer()
